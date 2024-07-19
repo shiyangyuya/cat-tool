@@ -1,0 +1,36 @@
+{
+  "name": "cat-tool",
+  "version": "0.0.1",
+  "description": "a web development tool library",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "tsc",
+    "prepare": "husky"
+  },
+  "lint-staged": [
+    "rm -rf es",
+    "tsc",
+    "git add ."
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shiyangyuya/cat-tool.git"
+  },
+  "keywords": [
+    "web",
+    "development",
+    "tool"
+  ],
+  "author": "shiyangyuya@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shiyangyuya/cat-tool/issues"
+  },
+  "homepage": "https://shiyangyuya.github.io/cat-tool/",
+  "devDependencies": {
+    "husky": "^9.1.1"
+  }
+}

@@ -1,0 +1,14 @@
+# Editor directories and files
+.idea
+
+node_modules
+.pnpm-debug.log*
+dist
+
+# System
+.DS_Store
+
+
+# local env files
+*.local
+.eslintcache
