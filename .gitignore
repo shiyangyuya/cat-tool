@@ -4,6 +4,7 @@
 node_modules
 .pnpm-debug.log*
 dist
+docs/.vitepress/cache/*
 
 # System
 .DS_Store

@@ -4,6 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "cat-tool",
   description: "a web development tool library",
+  base: '/cat-tool/',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
