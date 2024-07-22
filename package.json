@@ -3,12 +3,16 @@
   "version": "0.0.1",
   "description": "a web development tool library",
   "main": "index.js",
+  "type": "module",
   "directories": {
     "doc": "docs"
   },
   "scripts": {
     "build": "tsc",
-    "prepare": "husky"
+    "prepare": "husky",
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
   },
   "lint-staged": [
     "rm -rf es",
@@ -31,6 +35,7 @@
   },
   "homepage": "https://shiyangyuya.github.io/cat-tool/",
   "devDependencies": {
-    "husky": "^9.1.1"
+    "husky": "^9.1.1",
+    "vitepress": "^1.3.1"
   }
 }
