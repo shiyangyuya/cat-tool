@@ -1,9 +1,11 @@
 {
   "name": "cat-tool",
-  "version": "0.0.1",
+  "version": "0.0.2-beta.3",
   "description": "a web development tool library",
   "main": "es/index.js",
   "type": "module",
+  "author": "shiyangyuya@gmail.com",
+  "license": "MIT",
   "directories": {
     "doc": "docs"
   },
@@ -24,8 +26,7 @@
     "development",
     "tool"
   ],
-  "author": "shiyangyuya@gmail.com",
-  "license": "MIT",
+
   "bugs": {
     "url": "https://github.com/shiyangyuya/cat-tool/issues"
   },
