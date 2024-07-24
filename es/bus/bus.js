@@ -1,8 +1,4 @@
 class Bus {
-    /** 事件总线 */
-    _list;
-    /** 匿名函数key */
-    i;
     constructor() {
         this._list = {};
         this.i = 1;

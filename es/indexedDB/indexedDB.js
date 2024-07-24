@@ -1,9 +1,6 @@
 class IndexedDBWrapper {
-    dbName;
-    storeName;
-    version;
-    db = null;
     constructor(dbName, storeName, version = 1) {
+        this.db = null;
         this.dbName = dbName;
         this.storeName = storeName;
         this.version = version;

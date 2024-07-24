@@ -20,6 +20,6 @@ features:
   - title: TypeScript 支持
     details: 使用TypeScript开发，提供完整的类型定义文件
   - title: 不依赖框架
-    details: 不管是Vue、React、Angular...都可以使用
+    details: 不管是Vue、React、jquery...都可以使用
 ---
 

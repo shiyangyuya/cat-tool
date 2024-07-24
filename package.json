@@ -3,6 +3,7 @@
   "version": "0.0.2-beta.3",
   "description": "a web development tool library",
   "main": "es/index.js",
+  "module": "es/index.js",
   "type": "module",
   "author": "shiyangyuya@gmail.com",
   "license": "MIT",

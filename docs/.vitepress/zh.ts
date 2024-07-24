@@ -48,7 +48,7 @@ function nav(): DefaultTheme.NavItem[] {
       activeMatch: "/zh/guide/",
     },
     {
-      text: "工具",
+      text: "参考",
       link: "/zh/tools/overview",
       activeMatch: "/zh/tools/",
     },
@@ -84,8 +84,8 @@ function sidebarTool(): DefaultTheme.SidebarItem[] {
       text: "类工具",
       collapsed: false,
       items: [
-        { text: "bus 事件", link: "bus" },
-        { text: "IndexedDBWrapper", link: "IndexedDBWrapper" },
+        { text: "bus 事件总线", link: "bus" },
+        { text: "IndexedDB 数据库", link: "IndexedDBWrapper" },
       ],
     },
     {
