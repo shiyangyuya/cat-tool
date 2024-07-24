@@ -9,7 +9,7 @@ class IndexedDBWrapper<T extends any> {
     this.version = version;
   }
   // 打开数据库
-  open(index?: string): Promise<IDBDatabase> {
+  open(): Promise<IDBDatabase> {
     return new Promise((resolve, reject) => {
       const request = indexedDB.open(this.dbName, this.version);
       request.onupgradeneeded = (event: IDBVersionChangeEvent) => {
@@ -19,7 +19,6 @@ class IndexedDBWrapper<T extends any> {
             keyPath: 'id',
             autoIncrement: true,
           });
-          index && store.createIndex(index, index, { unique: false });
           resolve(this.db);
         }
       };
@@ -110,31 +109,3 @@ class IndexedDBWrapper<T extends any> {
 
 export default IndexedDBWrapper;
 
-// 使用示例
-// (async () => {
-//   const dbWrapper = new IndexedDBWrapper('MyDatabase', 'MyObjectStore');
-
-//   try {
-//     await dbWrapper.open();
-//     console.log('数据库打开成功');
-
-//     // 添加数据
-//     const id = await dbWrapper.add({ name: 'John Doe', age: 30 });
-//     console.log('数据添加成功，ID:', id);
-
-//     // 查询数据
-//     const data = await dbWrapper.get(id);
-//     console.log('查询到的数据:', data);
-
-//     // 修改数据
-//     data.age = 31;
-//     await dbWrapper.update(data);
-//     console.log('数据更新成功');
-
-//     // 删除数据
-//     await dbWrapper.delete(id);
-//     console.log('数据删除成功');
-//   } catch (error) {
-//     console.error('操作失败', error);
-//   }
-// })();
