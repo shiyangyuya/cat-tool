@@ -1,8 +1,10 @@
-import Bus from './bus/bus';
-import IndexedDBWrapper from './indexedDB/indexedDB';
+import Bus from "./bus/bus";
+import IndexedDBWrapper from "./indexedDB/indexedDB";
+import Watermark from "./waterMark/waterMark";
 
-export { Bus, IndexedDBWrapper };
+export { Bus, IndexedDBWrapper, Watermark };
 export default {
   Bus,
-  IndexedDBWrapper
+  IndexedDBWrapper,
+  Watermark,
 };

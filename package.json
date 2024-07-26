@@ -1,6 +1,6 @@
 {
   "name": "cat-tool",
-  "version": "0.0.2-beta.4",
+  "version": "0.0.2-beta.5",
   "description": "a web development tool library",
   "main": "es/index.js",
   "module": "es/index.js",
