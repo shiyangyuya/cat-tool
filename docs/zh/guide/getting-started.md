@@ -25,6 +25,7 @@ $ yarn add cat-tool
 ## 使用 {#usage}
 
 ```js
-import { Bus } from "cat-tool";
-const bus = new Bus();
+import { Watermark } from "cat-tool";
+
+new Watermark({ content: "hello world!" });
 ```

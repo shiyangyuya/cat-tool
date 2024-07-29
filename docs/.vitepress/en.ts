@@ -2,7 +2,7 @@ import { defineConfig, type DefaultTheme } from "vitepress";
 
 export const en = defineConfig({
   lang: "en-US",
-  description: "cat-tool 是一个模块化、简单易用的 JavaScript 实用工具库",
+  description: "cat-tool is a modular, easy-to-use JavaScript utility library",
   themeConfig: {
     nav: nav(),
     sidebar: {
@@ -11,44 +11,44 @@ export const en = defineConfig({
     },
     editLink: {
       pattern: "https://github.com/shiyangyuya/cat-tool/tree/main/docs",
-      text: "在 GitHub 上编辑此页面",
+      text: "Edit this page on GitHub",
     },
     footer: {
-      message: "基于 MIT 许可发布",
-      copyright: `版权所有 © 2023-${new Date().getFullYear()} shiyangyuya@gmail.com`,
+      message: "Released under the MIT License",
+      copyright: `MIT © 2023-${new Date().getFullYear()} shiyangyuya@gmail.com`,
     },
     docFooter: {
-      prev: "上一页",
-      next: "下一页",
+      prev: "Previous page",
+      next: "Next page",
     },
     outline: {
-      label: "页面导航",
+      label: "Webpage navigation",
     },
     lastUpdated: {
-      text: "最后更新于",
+      text: "last updated",
       formatOptions: {
         dateStyle: "short",
         timeStyle: "medium",
       },
     },
-    langMenuLabel: "多语言",
-    returnToTopLabel: "回到顶部",
-    sidebarMenuLabel: "菜单",
-    darkModeSwitchLabel: "主题",
-    lightModeSwitchTitle: "切换到浅色模式",
-    darkModeSwitchTitle: "切换到深色模式",
+    langMenuLabel: "multi-language",
+    returnToTopLabel: "back to the top",
+    sidebarMenuLabel: "menu",
+    darkModeSwitchLabel: "theme",
+    lightModeSwitchTitle: "light mode",
+    darkModeSwitchTitle: "dark mode",
   },
 });
 
 function nav(): DefaultTheme.NavItem[] {
   return [
     {
-      text: "指南",
+      text: "guide",
       link: "/en/guide/what-is",
       activeMatch: "/en/guide/",
     },
     {
-      text: "工具",
+      text: "reference",
       link: "/en/tools/overview",
       activeMatch: "/en/tools/",
     },
@@ -58,17 +58,17 @@ function nav(): DefaultTheme.NavItem[] {
 function sidebarGuide(): DefaultTheme.SidebarItem[] {
   return [
     {
-      text: "基础",
+      text: "base",
       collapsed: false,
       items: [
-        { text: "什么是 cat-tool", link: "what-is" },
-        { text: "快速开始", link: "getting-started" },
+        { text: "what is cat-tool", link: "what-is" },
+        { text: "start", link: "getting-started" },
       ],
     },
     {
-      text: "进阶",
+      text: "more",
       collapsed: false,
-      items: [{ text: "更新日志", link: "CHANGELOG" }],
+      items: [{ text: "changelog", link: "CHANGELOG" }],
     },
   ];
 }
@@ -76,20 +76,21 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 function sidebarTool(): DefaultTheme.SidebarItem[] {
   return [
     {
-      text: "工具总览",
+      text: "overview",
       collapsed: false,
-      items: [{ text: "工具总览 ", link: "overview" }],
+      items: [{ text: "overview ", link: "overview" }],
     },
     {
-      text: "类工具",
+      text: "class tools",
       collapsed: false,
       items: [
-        { text: "bus 事件", link: "bus" },
-        { text: "IndexedDBWrapper", link: "IndexedDBWrapper" },
+        { text: "Event Bus", link: "bus" },
+        { text: "IndexedDB database", link: "IndexedDBWrapper" },
+        { text: "Watermark Page Watermark", link: "Watermark" },
       ],
     },
     {
-      text: "函数工具",
+      text: "function tools",
       collapsed: false,
       items: [],
     },
