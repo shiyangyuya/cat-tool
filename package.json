@@ -13,6 +13,7 @@
   "scripts": {
     "build": "rm -rf es && tsc",
     "preCommit": "npm run build && git add .",
+    "prePublish": "rm -rf src docs .github .husky package-lock.json",
     "prepare": "husky",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",

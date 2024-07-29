@@ -9,8 +9,8 @@
  * @property {string} [zIndex] - 层级
  * @property {string} [fontSize] - 字号
  * @property {string} [color] - 颜色
- * @property {number} [xNumber] - 水平方向水印个数
- * @property {number} [yNumber] - 垂直方向水印个数
+ * @property {number} [xNum] - 水平方向水印个数
+ * @property {number} [yNum] - 垂直方向水印个数
  */
 interface WatermarkOption {
     rotate?: number;
@@ -21,8 +21,9 @@ interface WatermarkOption {
     zIndex?: string;
     fontSize?: string;
     color?: string;
-    xNumber?: number;
-    yNumber?: number;
+    xNum?: number;
+    yNum?: number;
+    auto?: boolean;
 }
 /**
  * 水印类
@@ -43,7 +44,7 @@ declare class Watermark {
      * 旋转角度
      * @type {number}
      */
-    rotationAngle: number;
+    rotate: number;
     /**
      * 透明度
      * @type {string}
@@ -65,7 +66,7 @@ declare class Watermark {
      */
     yGap: number;
     /**
-     * 字号
+     * 字号支持px rem 单位
      * @type {string}
      */
     fontSize: string;
@@ -78,12 +79,17 @@ declare class Watermark {
      * 水平方向水印个数
      * @type {number}
      */
-    xNumber: number;
+    xNum: number;
     /**
      * 垂直方向水印个数
      * @type {number}
      */
-    yNumber: number;
+    yNum: number;
+    /**
+     * 是否自动计算水平和垂直方向上的水印个数，会使xyNum失效
+     * @type {boolean}
+     */
+    auto: boolean;
     /**
      * 构造函数，初始化水印属性
      * @constructor
@@ -96,15 +102,19 @@ declare class Watermark {
      */
     initialize: () => void;
     /**
+     * 测量文本宽度确定水印宽度
+     */
+    measureWidth: (text: string) => number;
+    /**
      * 填充水印的主要逻辑
      */
     fillWatermark: () => void;
     /**
      * 回调函数，在 DOM 发生变化时将水印元素重新添加到 DOM 中
      * @param {HTMLElement} domElement - DOM 元素
-     * @param {HTMLElement} watermarkDiv - 水印元素
+     * @param {HTMLElement} mask - 水印元素
      */
-    callback: (domElement: HTMLElement, watermarkDiv: HTMLElement) => void;
+    callback: (domElement: HTMLElement, mask: HTMLElement) => void;
     /**
      * 在画布上填充水印内容
      * @param {HTMLCanvasElement} canvas - 画布元素
@@ -112,16 +122,16 @@ declare class Watermark {
     fillCanvas: (canvas: HTMLCanvasElement) => void;
     /**
      * 设置水印 DOM 元素的样式和背景
-     * @param {HTMLElement} watermarkDiv - 水印 DOM 元素
+     * @param {HTMLElement} mask - 水印 DOM 元素
      * @param {HTMLCanvasElement} canvas - 画布元素
      */
-    fillWatermarkDiv: (watermarkDiv: HTMLElement, canvas: HTMLCanvasElement) => void;
+    generateMask: (mask: HTMLElement, canvas: HTMLCanvasElement) => void;
     /**
      * 观察 DOM 变化并进行相应处理
      * @param {HTMLBodyElement} bodyElement - 页面 body 元素
-     * @param {HTMLElement} watermarkDiv - 水印 DOM 元素
+     * @param {HTMLElement} mask - 水印 DOM 元素
      * @param {HTMLCanvasElement} canvas - 画布元素
      */
-    observeChanges: (bodyElement: HTMLBodyElement, watermarkDiv: HTMLElement, canvas: HTMLCanvasElement) => void;
+    observeChanges: (bodyElement: HTMLBodyElement, mask: HTMLElement, canvas: HTMLCanvasElement) => void;
 }
 export default Watermark;
