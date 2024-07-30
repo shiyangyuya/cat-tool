@@ -30,7 +30,7 @@ interface WatermarkOption {
 - yGap：水印之间的垂直间隔，默认为 0。
 - opacity：透明度，默认为 0.2。
 - zIndex：层级，默认为 999999。
-- fontSize：字号，支持 px、rem 单位，默认为 12px。
+- fontSize：字号，单位 px，默认为 12px。
 - color：颜色，默认为 #dcdee0。
 - xNum：水平方向水印个数，默认为 5。
 - yNum：垂直方向水印个数，默认为 5。
@@ -46,11 +46,52 @@ import { Watermark } from "cat-tool";
 new Watermark({ content: "hello world!" });
 ```
 
-> 多行水印: 可以通过创建多个实例并且通过 `xGap | yGap` 参数控制水印之间的间距
+> 多行水印: 可以通过创建多个实例并且通过 `xGap | yGap` 参数控制水印之间的间距.
+> 需要注意的是想要实现多行布局建议设置`auto`为 false.通过`xNum | yNum`参数设置水印个数.
 
 ```typescript
 import { Watermark } from "cat-tool";
 
-new Watermark({ content: "line first" });
-new Watermark({ content: "line second", yGap: 20 });
+new Watermark({ content: "line first", auto: false });
+new Watermark({ content: "line second", yGap: 20, auto: false });
 ```
+
+<span @click="fill" class="btn">生成单行水印</span>
+<span @click="fillMuti" class="btn">生成多行水印</span>
+<span @click="reload" class="btn">刷新</span>
+
+<style scoped>
+.btn {
+  padding: 8px 20px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #dcdfe6;
+  background-color: #409eff;
+  color: #fff;
+  cursor: pointer;
+  margin-right: 10px;
+  display: inline-block;
+}
+.btn:hover {
+  background-color: #66b1ff;
+}
+</style>
+<script setup>
+import { onMounted } from 'vue'
+let fill = null
+let fillMuti = null
+let reload = null
+onMounted(() => {
+  import('../../../es/index.js').then((module) => {
+    let {Watermark} = module
+    fill = ()=> {
+      new Watermark({ content: "hello world!" });
+    }
+    fillMuti = ()=> {
+      new Watermark({ content: "line first", auto: false });
+      new Watermark({ content: "line second", yGap: 20, auto: false });
+    }
+    reload = ()=> location.reload()
+  })
+})
+</script>

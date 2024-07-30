@@ -24,6 +24,7 @@ interface WatermarkOption {
   xNum?: number;
   yNum?: number;
   auto?: boolean;
+  position?: string;
 }
 
 /**
@@ -67,7 +68,7 @@ class Watermark {
    */
   yGap: number;
   /**
-   * 字号支持px rem 单位
+   * 字号单位px
    * @type {string}
    */
   fontSize: string;
@@ -93,6 +94,12 @@ class Watermark {
    * @type {boolean}
    */
   auto: boolean;
+  /** 水印对齐方式- top right left bottom center */
+  position: string;
+
+  fontFamily =
+    "PingFangSC-Regular,PingFang SC,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Segoe UI,Arial,Roboto,miui,Hiragino Sans GB,Microsoft Yahei,sans-serif";
+
   /**
    * 构造函数，初始化水印属性
    * @constructor
@@ -104,19 +111,20 @@ class Watermark {
     this.rotate = option.rotate ?? -22;
     this.opacity = option.opacity ?? "0.2";
     this.zIndex = option.zIndex ?? "999999";
-    this.xGap = option.xGap ?? 0;
-    this.yGap = option.yGap ?? 0;
-    this.fontSize = option.fontSize ?? "12px";
-    this.color = option.color ?? "#dcdee0";
-    this.xNum = option.xNum ?? 5;
-    this.yNum = option.yNum ?? 5;
+    this.xGap = option.xGap || 0;
+    this.yGap = option.yGap || 0;
+    this.fontSize = option.fontSize || "12px";
+    this.color = option.color || "#dcdee0";
+    this.xNum = option.xNum || 5;
+    this.yNum = option.yNum || 5;
     this.auto = option.auto ?? true;
+    this.position = option.position || "";
     this.initialize();
   }
   private _generateID = (() => {
     let unique = 0;
     return () => {
-      const random = Math.floor(Math.random() * 1000000000);
+      const random = Math.floor((Math.random() * 10000) | 0);
       unique++;
       return `mask_${random}_${unique}`;
     };
@@ -134,7 +142,7 @@ class Watermark {
   measureWidth = (text: string) => {
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
-    ctx.font = `${this.fontSize} PingFangSC-Regular,PingFang SC,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Segoe UI,Arial,Roboto,miui,Hiragino Sans GB,Microsoft Yahei,sans-serif`;
+    ctx.font = `${this.fontSize} ${this.fontFamily}`;
     return ctx.measureText(text).width;
   };
   /**
@@ -172,7 +180,7 @@ class Watermark {
   fillCanvas = (canvas: HTMLCanvasElement) => {
     const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
     ctx.fillStyle = `color: ${this.color}`;
-    ctx.font = `${this.fontSize} PingFangSC-Regular,PingFang SC,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Segoe UI,Arial,Roboto,miui,Hiragino Sans GB,Microsoft Yahei,sans-serif`;
+    ctx.font = `${this.fontSize} ${this.fontFamily}`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     const width = canvas.width / 2;
@@ -200,8 +208,9 @@ class Watermark {
     mask.style.zIndex = this.zIndex;
     mask.style.width = document.documentElement.clientWidth + "px";
     mask.style.height = document.documentElement.clientHeight + "px";
-    mask.style.background =
-      "url(" + canvas.toDataURL("image/png") + ") center repeat";
+    mask.style.background = `url(${canvas.toDataURL("image/png")}) ${
+      this.position
+    } repeat`;
   };
 
   /**

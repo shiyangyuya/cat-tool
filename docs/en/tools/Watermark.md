@@ -8,17 +8,17 @@ The Watermark class is used to generate and add watermarks on web pages. By pass
 
 ```typescript
 interface WatermarkOption {
-content: string;
-rotate?: number;
-xGap?: number;
-yGap?: number;
-opacity?: string;
-zIndex?: string;
-fontSize?: string;
-color?: string;
-xNum?: number;
-yNum?: number;
-auto?: boolean;
+  content: string;
+  rotate?: number;
+  xGap?: number;
+  yGap?: number;
+  opacity?: string;
+  zIndex?: string;
+  fontSize?: string;
+  color?: string;
+  xNum?: number;
+  yNum?: number;
+  auto?: boolean;
 }
 ```
 
@@ -30,7 +30,7 @@ auto?: boolean;
 - yGap: vertical gap between watermarks, default is 0.
 - opacity: transparency, default is 0.2.
 - zIndex: level, default is 999999.
-- fontSize: font size, supports px and rem units, default is 12px.
+- fontSize: supports px, default is 12px.
 - color: color, default is #dcdee0.
 - xNum: number of watermarks in horizontal direction, default is 5.
 - yNum: number of watermarks in vertical direction, default is 5.
@@ -46,7 +46,8 @@ import { Watermark } from "cat-tool";
 new Watermark({ content: "hello world!" });
 ```
 
-> Multi-line watermark: You can create multiple instances and control the spacing between watermarks through the `xGap | yGap` parameters
+> Multi-line watermarking: This can be done by creating multiple instances and by using the xGap | The yGap' parameter controls the spacing between watermarks.
+> Note that if you want to implement a multi-line layout, it is recommended to set 'auto' to false yNum' parameter to set the number of watermarks.
 
 ```typescript
 import { Watermark } from "cat-tool";

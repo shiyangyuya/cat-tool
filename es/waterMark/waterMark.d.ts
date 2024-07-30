@@ -24,6 +24,7 @@ interface WatermarkOption {
     xNum?: number;
     yNum?: number;
     auto?: boolean;
+    position?: string;
 }
 /**
  * 水印类
@@ -66,7 +67,7 @@ declare class Watermark {
      */
     yGap: number;
     /**
-     * 字号支持px rem 单位
+     * 字号单位px
      * @type {string}
      */
     fontSize: string;
@@ -90,6 +91,9 @@ declare class Watermark {
      * @type {boolean}
      */
     auto: boolean;
+    /** 水印对齐方式- top right left bottom center */
+    position: string;
+    fontFamily: string;
     /**
      * 构造函数，初始化水印属性
      * @constructor
