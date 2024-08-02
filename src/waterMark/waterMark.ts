@@ -24,6 +24,7 @@ interface WatermarkOption {
   xNum?: number;
   yNum?: number;
   auto?: boolean;
+  fontCanvasRatio?: number;
   position?: string;
 }
 
@@ -41,7 +42,7 @@ class Watermark {
    * 水印的唯一标识
    * @type {string}
    */
-  markIdentifier: string;
+  markId: string;
   /**
    * 旋转角度
    * @type {number}
@@ -94,6 +95,8 @@ class Watermark {
    * @type {boolean}
    */
   auto: boolean;
+  /** 文字长度与画布边长的比例 */
+  fontCanvasRatio: number;
   /** 水印对齐方式- top right left bottom center */
   position: string;
 
@@ -107,7 +110,7 @@ class Watermark {
    */
   constructor(option: WatermarkOption) {
     this.content = option.content;
-    this.markIdentifier = this._generateID();
+    this.markId = this._generateID();
     this.rotate = option.rotate ?? -22;
     this.opacity = option.opacity ?? "0.2";
     this.zIndex = option.zIndex ?? "999999";
@@ -119,6 +122,7 @@ class Watermark {
     this.yNum = option.yNum || 5;
     this.auto = option.auto ?? true;
     this.position = option.position || "";
+    this.fontCanvasRatio = option.fontCanvasRatio || 1.4;
     this.initialize();
   }
   private _generateID = (() => {
@@ -154,11 +158,12 @@ class Watermark {
     canvas.width = window.screen.width / this.xNum;
     canvas.height = window.screen.height / this.yNum;
     if (this.auto) {
-      canvas.height = canvas.width = this.measureWidth(this.content) * 1.4;
+      canvas.height = canvas.width =
+        this.measureWidth(this.content) * this.fontCanvasRatio;
     }
     this.fillCanvas(canvas);
     const mask = document.createElement("div");
-    mask.id = this.markIdentifier;
+    mask.id = this.markId;
     this.generateMask(mask, canvas);
     this.observeChanges(bodyElement, mask, canvas);
     bodyElement.appendChild(mask);

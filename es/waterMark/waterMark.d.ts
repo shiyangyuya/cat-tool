@@ -24,6 +24,7 @@ interface WatermarkOption {
     xNum?: number;
     yNum?: number;
     auto?: boolean;
+    fontCanvasRatio?: number;
     position?: string;
 }
 /**
@@ -40,7 +41,7 @@ declare class Watermark {
      * 水印的唯一标识
      * @type {string}
      */
-    markIdentifier: string;
+    markId: string;
     /**
      * 旋转角度
      * @type {number}
@@ -91,6 +92,8 @@ declare class Watermark {
      * @type {boolean}
      */
     auto: boolean;
+    /** 文字长度与画布边长的比例 */
+    fontCanvasRatio: number;
     /** 水印对齐方式- top right left bottom center */
     position: string;
     fontFamily: string;

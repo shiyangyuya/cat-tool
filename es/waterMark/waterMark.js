@@ -43,11 +43,12 @@ class Watermark {
             canvas.width = window.screen.width / this.xNum;
             canvas.height = window.screen.height / this.yNum;
             if (this.auto) {
-                canvas.height = canvas.width = this.measureWidth(this.content) * 1.4;
+                canvas.height = canvas.width =
+                    this.measureWidth(this.content) * this.fontCanvasRatio;
             }
             this.fillCanvas(canvas);
             const mask = document.createElement("div");
-            mask.id = this.markIdentifier;
+            mask.id = this.markId;
             this.generateMask(mask, canvas);
             this.observeChanges(bodyElement, mask, canvas);
             bodyElement.appendChild(mask);
@@ -124,7 +125,7 @@ class Watermark {
             };
         };
         this.content = option.content;
-        this.markIdentifier = this._generateID();
+        this.markId = this._generateID();
         this.rotate = (_a = option.rotate) !== null && _a !== void 0 ? _a : -22;
         this.opacity = (_b = option.opacity) !== null && _b !== void 0 ? _b : "0.2";
         this.zIndex = (_c = option.zIndex) !== null && _c !== void 0 ? _c : "999999";
@@ -136,6 +137,7 @@ class Watermark {
         this.yNum = option.yNum || 5;
         this.auto = (_d = option.auto) !== null && _d !== void 0 ? _d : true;
         this.position = option.position || "";
+        this.fontCanvasRatio = option.fontCanvasRatio || 1.4;
         this.initialize();
     }
 }
