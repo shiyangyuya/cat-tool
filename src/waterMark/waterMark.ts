@@ -227,8 +227,6 @@ class Watermark {
     mask.style.visibility = "visible";
     mask.style.position = this.containerId === "body" ? "fixed" : "absolute";
     mask.style.zIndex = this.zIndex;
-    mask.style.width = document.documentElement.clientWidth + "px";
-    mask.style.height = document.documentElement.clientHeight + "px";
     mask.style.background = `url(${canvas.toDataURL("image/png")}) ${
       this.position
     } repeat`;
@@ -263,11 +261,6 @@ class Watermark {
       attributes: true,
     });
     this.containerOb.observe(container, { childList: true });
-    window.onresize = () => {
-      if (this.containerId !== "body") {
-        this.generateMask(mask, canvas);
-      }
-    };
   };
 }
 
