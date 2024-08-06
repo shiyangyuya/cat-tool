@@ -73,12 +73,12 @@ new Watermark({ content: "line second", yGap: 20, auto: false });
 ```typescript
 import { Watermark } from "cat-tool";
 
-const appMark = new Watermark({ content: "hello world!", containerId: "app" });
+const appMark = new Watermark({ content: "hello world!", containerId: "#app" });
 
 appMark.remove();
 ```
 
-## 示例
+## 在线体验
 
 <span @click="fill" class="btn">生成单行水印</span>
 <span @click="fillMuti" class="btn">生成多行水印</span>
