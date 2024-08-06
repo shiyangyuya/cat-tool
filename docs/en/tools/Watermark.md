@@ -19,6 +19,7 @@ interface WatermarkOption {
   xNum?: number;
   yNum?: number;
   auto?: boolean;
+  fontCanvasRatio?: number;
 }
 ```
 
@@ -35,6 +36,7 @@ interface WatermarkOption {
 - xNum: number of watermarks in horizontal direction, default is 5.
 - yNum: number of watermarks in vertical direction, default is 5.
 - auto: whether to automatically calculate the number of watermarks in horizontal and vertical directions, default is true. If true, `xNum` and `yNum` settings will be invalid.
+- fontCanvasRatio: When the number of watermarks is automatically calculated, the ratio of text length to canvas edge length is 1.4 by default.
 
 ## Usage
 
@@ -54,4 +56,16 @@ import { Watermark } from "cat-tool";
 
 new Watermark({ content: "line first" });
 new Watermark({ content: "line second", yGap: 20 });
+```
+
+## remove
+
+> remove watermark can use `remove()` method
+
+```typescript
+import { Watermark } from "cat-tool";
+
+const appMark = new Watermark({ content: "hello world!", containerId: "#app" });
+
+appMark.remove();
 ```

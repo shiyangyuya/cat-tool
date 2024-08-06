@@ -25,6 +25,14 @@ class Watermark {
         this.initialize = () => {
             this.fillWatermark();
         };
+        this.remove = () => {
+            var _a, _b;
+            const container = document.querySelector(this.containerId);
+            const mask = document.getElementById(this.markId);
+            (_a = this.containerOb) === null || _a === void 0 ? void 0 : _a.disconnect();
+            (_b = this.elementOb) === null || _b === void 0 ? void 0 : _b.disconnect();
+            container.removeChild(mask);
+        };
         /**
          * 测量文本宽度确定水印宽度
          */
@@ -38,10 +46,20 @@ class Watermark {
          * 填充水印的主要逻辑
          */
         this.fillWatermark = () => {
-            const bodyElement = document.querySelector("body");
+            const container = document.querySelector(this.containerId);
             const canvas = document.createElement("canvas");
-            canvas.width = window.screen.width / this.xNum;
-            canvas.height = window.screen.height / this.yNum;
+            if (this.xNum === 0 || this.yNum === 0) {
+                return;
+            }
+            // 默认宽度按照容器计算
+            canvas.width = container.offsetWidth / this.xNum;
+            canvas.height = container.offsetHeight / this.yNum;
+            // 如果是body，则按照屏幕宽度计算
+            if (this.containerId === "body") {
+                canvas.width = window.screen.width / this.xNum;
+                canvas.height = window.screen.height / this.yNum;
+            }
+            // 如果是自动计算
             if (this.auto) {
                 canvas.height = canvas.width =
                     this.measureWidth(this.content) * this.fontCanvasRatio;
@@ -50,8 +68,8 @@ class Watermark {
             const mask = document.createElement("div");
             mask.id = this.markId;
             this.generateMask(mask, canvas);
-            this.observeChanges(bodyElement, mask, canvas);
-            bodyElement.appendChild(mask);
+            this.observeChanges(container, mask, canvas);
+            container.appendChild(mask);
         };
         /**
          * 回调函数，在 DOM 发生变化时将水印元素重新添加到 DOM 中
@@ -86,12 +104,15 @@ class Watermark {
          */
         this.generateMask = (mask, canvas) => {
             mask.style.pointerEvents = "none";
-            mask.style.top = "0px";
-            mask.style.left = "0px";
+            mask.style.top =
+                mask.style.left =
+                    mask.style.bottom =
+                        mask.style.right =
+                            "0";
             mask.style.opacity = this.opacity;
             mask.style.display = "block";
             mask.style.visibility = "visible";
-            mask.style.position = "fixed";
+            mask.style.position = this.containerId === "body" ? "fixed" : "absolute";
             mask.style.zIndex = this.zIndex;
             mask.style.width = document.documentElement.clientWidth + "px";
             mask.style.height = document.documentElement.clientHeight + "px";
@@ -99,29 +120,33 @@ class Watermark {
         };
         /**
          * 观察 DOM 变化并进行相应处理
-         * @param {HTMLBodyElement} bodyElement - 页面 body 元素
+         * @param {HTMLBodyElement} container - 页面 body 元素
          * @param {HTMLElement} mask - 水印 DOM 元素
          * @param {HTMLCanvasElement} canvas - 画布元素
          */
-        this.observeChanges = (bodyElement, mask, canvas) => {
-            const observer = new MutationObserver(() => {
+        this.observeChanges = (container, mask, canvas) => {
+            // 如果属性发生变化，则重新设置水印样式
+            this.elementOb = new MutationObserver(() => {
                 this.generateMask(mask, canvas);
             });
-            const bodyObserver = new MutationObserver((mutationsList) => {
+            // 如果dom节点被移除，则重新添加
+            this.containerOb = new MutationObserver((mutationsList) => {
                 mutationsList.map((mutaion) => {
                     mutaion.removedNodes.forEach((targetNode) => {
                         if ("id" in targetNode && targetNode.id === mask.id) {
-                            this.callback(bodyElement, mask);
+                            this.callback(container, mask);
                         }
                     });
                 });
             });
-            observer.observe(mask, {
+            this.elementOb.observe(mask, {
                 attributes: true,
             });
-            bodyObserver.observe(bodyElement, { childList: true });
+            this.containerOb.observe(container, { childList: true });
             window.onresize = () => {
-                this.generateMask(mask, canvas);
+                if (this.containerId !== "body") {
+                    this.generateMask(mask, canvas);
+                }
             };
         };
         this.content = option.content;
@@ -138,6 +163,7 @@ class Watermark {
         this.auto = (_d = option.auto) !== null && _d !== void 0 ? _d : true;
         this.position = option.position || "";
         this.fontCanvasRatio = option.fontCanvasRatio || 1.4;
+        this.containerId = option.containerId || "body";
         this.initialize();
     }
 }

@@ -1,20 +1,7 @@
-/**
- * 水印选项接口
- * @interface WatermarkOption
- * @property {number} [rotate] - 旋转角度
- * @property {string} content - 文案
- * @property {number} [xGap] - 水印之间的水平间隔
- * @property {number} [yGap] - 水印之间的垂直间隔
- * @property {string} [opacity] - 透明度
- * @property {string} [zIndex] - 层级
- * @property {string} [fontSize] - 字号
- * @property {string} [color] - 颜色
- * @property {number} [xNum] - 水平方向水印个数
- * @property {number} [yNum] - 垂直方向水印个数
- */
 interface WatermarkOption {
-  rotate?: number;
   content: string;
+  containerId?: string;
+  rotate?: number;
   xGap?: number;
   yGap?: number;
   opacity?: string;
@@ -43,6 +30,11 @@ class Watermark {
    * @type {string}
    */
   markId: string;
+  /**
+   * 要添加水印的容器id
+   * @type {string}
+   */
+  containerId: string;
   /**
    * 旋转角度
    * @type {number}
@@ -102,7 +94,8 @@ class Watermark {
 
   fontFamily =
     "PingFangSC-Regular,PingFang SC,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Segoe UI,Arial,Roboto,miui,Hiragino Sans GB,Microsoft Yahei,sans-serif";
-
+  containerOb?: MutationObserver;
+  elementOb?: MutationObserver;
   /**
    * 构造函数，初始化水印属性
    * @constructor
@@ -123,6 +116,7 @@ class Watermark {
     this.auto = option.auto ?? true;
     this.position = option.position || "";
     this.fontCanvasRatio = option.fontCanvasRatio || 1.4;
+    this.containerId = option.containerId || "body";
     this.initialize();
   }
   private _generateID = (() => {
@@ -140,6 +134,15 @@ class Watermark {
   initialize = () => {
     this.fillWatermark();
   };
+  remove = () => {
+    const container = document.querySelector(
+      this.containerId
+    ) as HTMLBodyElement;
+    const mask = document.getElementById(this.markId) as HTMLElement;
+    this.containerOb?.disconnect();
+    this.elementOb?.disconnect();
+    container.removeChild(mask);
+  };
   /**
    * 测量文本宽度确定水印宽度
    */
@@ -153,10 +156,20 @@ class Watermark {
    * 填充水印的主要逻辑
    */
   fillWatermark = () => {
-    const bodyElement = document.querySelector("body") as HTMLBodyElement;
+    const container = document.querySelector(this.containerId) as HTMLElement;
     const canvas = document.createElement("canvas");
-    canvas.width = window.screen.width / this.xNum;
-    canvas.height = window.screen.height / this.yNum;
+    if (this.xNum === 0 || this.yNum === 0) {
+      return;
+    }
+    // 默认宽度按照容器计算
+    canvas.width = container.offsetWidth / this.xNum;
+    canvas.height = container.offsetHeight / this.yNum;
+    // 如果是body，则按照屏幕宽度计算
+    if (this.containerId === "body") {
+      canvas.width = window.screen.width / this.xNum;
+      canvas.height = window.screen.height / this.yNum;
+    }
+    // 如果是自动计算
     if (this.auto) {
       canvas.height = canvas.width =
         this.measureWidth(this.content) * this.fontCanvasRatio;
@@ -165,8 +178,8 @@ class Watermark {
     const mask = document.createElement("div");
     mask.id = this.markId;
     this.generateMask(mask, canvas);
-    this.observeChanges(bodyElement, mask, canvas);
-    bodyElement.appendChild(mask);
+    this.observeChanges(container, mask, canvas);
+    container.appendChild(mask);
   };
 
   /**
@@ -204,12 +217,15 @@ class Watermark {
    */
   generateMask = (mask: HTMLElement, canvas: HTMLCanvasElement) => {
     mask.style.pointerEvents = "none";
-    mask.style.top = "0px";
-    mask.style.left = "0px";
+    mask.style.top =
+      mask.style.left =
+      mask.style.bottom =
+      mask.style.right =
+        "0";
     mask.style.opacity = this.opacity;
     mask.style.display = "block";
     mask.style.visibility = "visible";
-    mask.style.position = "fixed";
+    mask.style.position = this.containerId === "body" ? "fixed" : "absolute";
     mask.style.zIndex = this.zIndex;
     mask.style.width = document.documentElement.clientWidth + "px";
     mask.style.height = document.documentElement.clientHeight + "px";
@@ -220,33 +236,37 @@ class Watermark {
 
   /**
    * 观察 DOM 变化并进行相应处理
-   * @param {HTMLBodyElement} bodyElement - 页面 body 元素
+   * @param {HTMLBodyElement} container - 页面 body 元素
    * @param {HTMLElement} mask - 水印 DOM 元素
    * @param {HTMLCanvasElement} canvas - 画布元素
    */
   observeChanges = (
-    bodyElement: HTMLBodyElement,
+    container: HTMLElement,
     mask: HTMLElement,
     canvas: HTMLCanvasElement
   ) => {
-    const observer = new MutationObserver(() => {
+    // 如果属性发生变化，则重新设置水印样式
+    this.elementOb = new MutationObserver(() => {
       this.generateMask(mask, canvas);
     });
-    const bodyObserver = new MutationObserver((mutationsList) => {
+    // 如果dom节点被移除，则重新添加
+    this.containerOb = new MutationObserver((mutationsList) => {
       mutationsList.map((mutaion) => {
         mutaion.removedNodes.forEach((targetNode) => {
           if ("id" in targetNode && targetNode.id === mask.id) {
-            this.callback(bodyElement, mask);
+            this.callback(container, mask);
           }
         });
       });
     });
-    observer.observe(mask, {
+    this.elementOb.observe(mask, {
       attributes: true,
     });
-    bodyObserver.observe(bodyElement, { childList: true });
+    this.containerOb.observe(container, { childList: true });
     window.onresize = () => {
-      this.generateMask(mask, canvas);
+      if (this.containerId !== "body") {
+        this.generateMask(mask, canvas);
+      }
     };
   };
 }

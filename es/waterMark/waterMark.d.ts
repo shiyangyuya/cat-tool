@@ -1,20 +1,7 @@
-/**
- * 水印选项接口
- * @interface WatermarkOption
- * @property {number} [rotate] - 旋转角度
- * @property {string} content - 文案
- * @property {number} [xGap] - 水印之间的水平间隔
- * @property {number} [yGap] - 水印之间的垂直间隔
- * @property {string} [opacity] - 透明度
- * @property {string} [zIndex] - 层级
- * @property {string} [fontSize] - 字号
- * @property {string} [color] - 颜色
- * @property {number} [xNum] - 水平方向水印个数
- * @property {number} [yNum] - 垂直方向水印个数
- */
 interface WatermarkOption {
-    rotate?: number;
     content: string;
+    containerId?: string;
+    rotate?: number;
     xGap?: number;
     yGap?: number;
     opacity?: string;
@@ -42,6 +29,11 @@ declare class Watermark {
      * @type {string}
      */
     markId: string;
+    /**
+     * 要添加水印的容器id
+     * @type {string}
+     */
+    containerId: string;
     /**
      * 旋转角度
      * @type {number}
@@ -97,6 +89,8 @@ declare class Watermark {
     /** 水印对齐方式- top right left bottom center */
     position: string;
     fontFamily: string;
+    containerOb?: MutationObserver;
+    elementOb?: MutationObserver;
     /**
      * 构造函数，初始化水印属性
      * @constructor
@@ -108,6 +102,7 @@ declare class Watermark {
      * 初始化方法，调用填充水印的方法
      */
     initialize: () => void;
+    remove: () => void;
     /**
      * 测量文本宽度确定水印宽度
      */
@@ -135,10 +130,10 @@ declare class Watermark {
     generateMask: (mask: HTMLElement, canvas: HTMLCanvasElement) => void;
     /**
      * 观察 DOM 变化并进行相应处理
-     * @param {HTMLBodyElement} bodyElement - 页面 body 元素
+     * @param {HTMLBodyElement} container - 页面 body 元素
      * @param {HTMLElement} mask - 水印 DOM 元素
      * @param {HTMLCanvasElement} canvas - 画布元素
      */
-    observeChanges: (bodyElement: HTMLBodyElement, mask: HTMLElement, canvas: HTMLCanvasElement) => void;
+    observeChanges: (container: HTMLElement, mask: HTMLElement, canvas: HTMLCanvasElement) => void;
 }
 export default Watermark;
