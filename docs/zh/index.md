@@ -10,7 +10,7 @@ hero:
       link: /zh/guide/getting-started
     - theme: alt
       text: 浏览文档
-      link: /zh/tools/overview
+      link: /zh/tools/bus
 
 features:
   - title: 模块化

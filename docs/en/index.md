@@ -10,7 +10,7 @@ hero:
       link: /zh/guide/getting-started
     - theme: alt
       text: Browse the documentation
-      link: /zh/tools/overview
+      link: /zh/tools/bus
 
 features:
   - title: Modularity
