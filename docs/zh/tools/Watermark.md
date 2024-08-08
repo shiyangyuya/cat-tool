@@ -26,19 +26,19 @@ interface WatermarkOption {
 
 > 该接口定义了水印的配置选项:
 
-- content: 水印的文案内容，必填。
-- containerId: 要添加水印的容器 id。默认值为 body。
-- rotate: 旋转角度，默认为 -22 度。
-- xGap: 水印之间的水平间隔，默认为 0。
-- yGap: 水印之间的垂直间隔，默认为 0。
-- opacity: 透明度，默认为 0.2。
-- zIndex: 层级，默认为 999999。
-- fontSize: 字号，单位 px，默认为 12px。
-- color: 颜色，默认为 #dcdee0。
-- xNum: 水平方向水印个数，默认为 5。
-- yNum: 垂直方向水印个数，默认为 5。
-- auto: 是否自动计算水平和垂直方向上的水印个数，默认为 true。如果为 true，`xNum` 和 `yNum` 设置会失效。
-- fontCanvasRatio: 采用自动计算水印个数时，文字长度与画布边长的比例，默认 1.4 。
+- `content`: 水印的文案内容，必填。
+- `containerId`: 要添加水印的容器 id。默认值为 body。
+- `rotate`: 旋转角度，默认为 -22 度。
+- `xGap`: 水印与中心点x轴向偏移，默认为 0, 适用于多行水印绘制。
+- `yGap`: 水印与中心点y轴向偏移，默认为 0, 适用于多行水印绘制。
+- `opacity`: 透明度，默认为 0.2。
+- `zIndex`: 层级，默认为 999999。
+- `fontSize`: 字号，单位 px，默认为 12px。
+- `color`: 颜色，默认为 #dcdee0。
+- `xNum`: 水平方向水印个数，默认为 5。
+- `yNum`: 垂直方向水印个数，默认为 5。
+- `auto`: 是否自动计算水平和垂直方向上的水印个数，默认为 true。如果为 true，`xNum` 和 `yNum` 设置会失效。
+- `fontCanvasRatio`: 采用自动计算水印个数时，文字长度与画布边长的比例，默认 1.4 。
 
 ## 普通使用
 
