@@ -93,6 +93,7 @@ function sidebarTool(): DefaultTheme.SidebarItem[] {
       text: "function tools",
       collapsed: false,
       items: [
+        { text: "getLocaltion", link: "localtion" },
         { text: "uuid", link: "uuid" },
       ],
     },

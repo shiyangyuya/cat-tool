@@ -93,6 +93,7 @@ function sidebarTool(): DefaultTheme.SidebarItem[] {
       text: "函数工具",
       collapsed: false,
       items: [
+        { text: "getLocaltion 获取定位", link: "localtion" },
         { text: "uuid 唯一标识符", link: "uuid" },
       ],
     },
