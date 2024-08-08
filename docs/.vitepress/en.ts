@@ -49,7 +49,7 @@ function nav(): DefaultTheme.NavItem[] {
     },
     {
       text: "reference",
-      link: "/en/tools/overview",
+      link: "/en/tools/bus",
       activeMatch: "/en/tools/",
     },
   ];
@@ -75,11 +75,11 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 
 function sidebarTool(): DefaultTheme.SidebarItem[] {
   return [
-    {
-      text: "overview",
-      collapsed: false,
-      items: [{ text: "overview ", link: "overview" }],
-    },
+    // {
+    //   text: "overview",
+    //   collapsed: false,
+    //   items: [{ text: "overview ", link: "overview" }],
+    // },
     {
       text: "class tools",
       collapsed: false,
@@ -92,7 +92,9 @@ function sidebarTool(): DefaultTheme.SidebarItem[] {
     {
       text: "function tools",
       collapsed: false,
-      items: [],
+      items: [
+        { text: "uuid", link: "uuid" },
+      ],
     },
   ];
 }

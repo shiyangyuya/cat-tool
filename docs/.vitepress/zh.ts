@@ -48,8 +48,8 @@ function nav(): DefaultTheme.NavItem[] {
       activeMatch: "/zh/guide/",
     },
     {
-      text: "参考",
-      link: "/zh/tools/overview",
+      text: "工具库",
+      link: "/zh/tools/bus",
       activeMatch: "/zh/tools/",
     },
   ];
@@ -75,11 +75,11 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 
 function sidebarTool(): DefaultTheme.SidebarItem[] {
   return [
-    {
-      text: "工具总览",
-      collapsed: false,
-      items: [{ text: "工具总览 ", link: "overview" }],
-    },
+    // {
+    //   text: "工具总览",
+    //   collapsed: false,
+    //   items: [{ text: "工具总览 ", link: "overview" }],
+    // },
     {
       text: "类工具",
       collapsed: false,
@@ -92,7 +92,9 @@ function sidebarTool(): DefaultTheme.SidebarItem[] {
     {
       text: "函数工具",
       collapsed: false,
-      items: [],
+      items: [
+        { text: "uuid 唯一标识符", link: "uuid" },
+      ],
     },
   ];
 }

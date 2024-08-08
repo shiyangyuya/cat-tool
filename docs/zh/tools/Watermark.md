@@ -95,6 +95,7 @@ appMark.remove();
   cursor: pointer;
   margin-right: 10px;
   display: inline-block;
+  user-select: none;
 }
 .btn:hover {
   background-color: #66b1ff;
