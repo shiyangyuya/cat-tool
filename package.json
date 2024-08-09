@@ -24,9 +24,11 @@
     "url": "https://github.com/shiyangyuya/cat-tool.git"
   },
   "keywords": [
-    "web",
-    "development",
-    "tool"
+    "bus",
+    "indexedDB",
+    "watermark",
+    "location",
+    "uuid"
   ],
   "bugs": {
     "url": "https://github.com/shiyangyuya/cat-tool/issues"
