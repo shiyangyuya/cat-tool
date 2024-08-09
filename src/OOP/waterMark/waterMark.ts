@@ -157,6 +157,11 @@ class Watermark {
    */
   fillWatermark = () => {
     const container = document.querySelector(this.containerId) as HTMLElement;
+    if (container === null) {
+      throw new Error(
+        "The DOM element of 'containerId' cannot be found. Please check whether the passed ID carries '#' or whether this DOM element has been created when generating the watermark."
+      );
+    }
     const canvas = document.createElement("canvas");
     if (this.xNum === 0 || this.yNum === 0) {
       return;
