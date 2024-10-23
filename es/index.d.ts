@@ -3,7 +3,8 @@ import IndexedDBWrapper from "./OOP/indexedDB/indexedDB";
 import Watermark from "./OOP/waterMark/waterMark";
 import uuid from "./FP/uuid/index";
 import getLocaltion from "./FP/location/index";
-export { Bus, IndexedDBWrapper, Watermark, uuid, getLocaltion };
+import { Memoize } from "./FP/memoize/memoize";
+export { Bus, IndexedDBWrapper, Watermark, uuid, getLocaltion, Memoize };
 declare const _default: {
     Bus: typeof Bus;
     IndexedDBWrapper: typeof IndexedDBWrapper;
@@ -16,5 +17,6 @@ declare const _default: {
         latitude: number;
         longitude: number;
     }>;
+    Memoize: typeof Memoize;
 };
 export default _default;

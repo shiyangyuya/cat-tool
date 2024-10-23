@@ -28,7 +28,8 @@
     "indexedDB",
     "watermark",
     "location",
-    "uuid"
+    "uuid",
+    "memoize"
   ],
   "bugs": {
     "url": "https://github.com/shiyangyuya/cat-tool/issues"
