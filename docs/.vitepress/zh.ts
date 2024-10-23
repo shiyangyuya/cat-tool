@@ -95,6 +95,7 @@ function sidebarTool(): DefaultTheme.SidebarItem[] {
       items: [
         { text: "getLocaltion 获取定位", link: "localtion" },
         { text: "uuid 唯一标识符", link: "uuid" },
+        { text: "memoize 缓存函数", link: "memoize" },
       ],
     },
   ];

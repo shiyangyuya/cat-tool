@@ -95,6 +95,7 @@ function sidebarTool(): DefaultTheme.SidebarItem[] {
       items: [
         { text: "getLocaltion", link: "localtion" },
         { text: "uuid", link: "uuid" },
+        { text: "memoize Caching Function", link: "memoize" },
       ],
     },
   ];
