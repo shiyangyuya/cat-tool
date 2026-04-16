@@ -23,4 +23,4 @@ const getLocaltion = (
   });
 };
 
-export default getLocaltion;
+export { getLocaltion };

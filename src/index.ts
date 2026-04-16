@@ -1,16 +1,7 @@
-import Bus from "./OOP/bus/bus";
-import IndexedDBWrapper from "./OOP/indexedDB/indexedDB";
-import Watermark from "./OOP/waterMark/waterMark";
-import uuid from "./FP/uuid/index";
-import getLocaltion from "./FP/location/index";
-import { memoize } from "./FP/memoize/memoize";
-
-export { Bus, IndexedDBWrapper, Watermark, uuid, getLocaltion, memoize };
-export default {
-  Bus,
-  IndexedDBWrapper,
-  Watermark,
-  uuid,
-  getLocaltion,
-  memoize,
-};
+export { Bus } from "./event/bus/bus";
+export { IndexedDBWrapper } from "./storage/indexedDB/indexedDB";
+export { Watermark } from "./browser/waterMark/waterMark";
+export { getLocaltion } from "./browser/location/index";
+export { PromiseQueue } from "./async/promiseQueue/index";
+export { uuid } from "./utils/uuid/index";
+export { memoize } from "./utils/memoize/memoize";

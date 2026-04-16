@@ -56,4 +56,4 @@ class Bus {
     this._list[name] = [];
   }
 }
-export default Bus;
+export { Bus };

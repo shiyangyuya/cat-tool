@@ -34,4 +34,3 @@ const buildID = () => {
 };
 
 export const uuid = { buildShortID, buildID };
-export default uuid;

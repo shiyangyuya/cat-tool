@@ -269,4 +269,4 @@ class Watermark {
   };
 }
 
-export default Watermark;
+export { Watermark };

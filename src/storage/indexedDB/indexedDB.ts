@@ -144,4 +144,4 @@ class IndexedDBWrapper {
   }
 }
 
-export default IndexedDBWrapper;
+export { IndexedDBWrapper };
