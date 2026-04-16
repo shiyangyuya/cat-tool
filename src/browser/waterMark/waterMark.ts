@@ -93,7 +93,7 @@ class Watermark {
   position: string;
 
   fontFamily =
-    "PingFangSC-Regular,PingFang SC,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Segoe UI,Arial,Roboto,miui,Hiragino Sans GB,Microsoft Yahei,sans-serif";
+    'PingFangSC-Regular,PingFang SC,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Segoe UI,Arial,Roboto,miui,Hiragino Sans GB,Microsoft Yahei,sans-serif';
   containerOb?: MutationObserver;
   elementOb?: MutationObserver;
   /**
@@ -105,18 +105,18 @@ class Watermark {
     this.content = option.content;
     this.markId = this._generateID();
     this.rotate = option.rotate ?? -22;
-    this.opacity = option.opacity ?? "0.2";
-    this.zIndex = option.zIndex ?? "999999";
+    this.opacity = option.opacity ?? '0.2';
+    this.zIndex = option.zIndex ?? '999999';
     this.xGap = option.xGap || 0;
     this.yGap = option.yGap || 0;
-    this.fontSize = option.fontSize || "12px";
-    this.color = option.color || "#dcdee0";
+    this.fontSize = option.fontSize || '12px';
+    this.color = option.color || '#dcdee0';
     this.xNum = option.xNum || 5;
     this.yNum = option.yNum || 5;
     this.auto = option.auto ?? true;
-    this.position = option.position || "";
+    this.position = option.position || '';
     this.fontCanvasRatio = option.fontCanvasRatio || 1.4;
-    this.containerId = option.containerId || "body";
+    this.containerId = option.containerId || 'body';
     this.initialize();
   }
   private _generateID = (() => {
@@ -136,7 +136,7 @@ class Watermark {
   };
   remove = () => {
     const container = document.querySelector(
-      this.containerId
+      this.containerId,
     ) as HTMLBodyElement;
     const mask = document.getElementById(this.markId) as HTMLElement;
     this.containerOb?.disconnect();
@@ -147,8 +147,8 @@ class Watermark {
    * 测量文本宽度确定水印宽度
    */
   measureWidth = (text: string) => {
-    const canvas = document.createElement("canvas");
-    const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
     ctx.font = `${this.fontSize} ${this.fontFamily}`;
     return ctx.measureText(text).width;
   };
@@ -159,10 +159,10 @@ class Watermark {
     const container = document.querySelector(this.containerId) as HTMLElement;
     if (container === null) {
       throw new Error(
-        "The DOM element of 'containerId' cannot be found. Please check whether the passed ID carries '#' or whether this DOM element has been created when generating the watermark."
+        "The DOM element of 'containerId' cannot be found. Please check whether the passed ID carries '#' or whether this DOM element has been created when generating the watermark.",
       );
     }
-    const canvas = document.createElement("canvas");
+    const canvas = document.createElement('canvas');
     if (this.xNum === 0 || this.yNum === 0) {
       return;
     }
@@ -170,7 +170,7 @@ class Watermark {
     canvas.width = container.offsetWidth / this.xNum;
     canvas.height = container.offsetHeight / this.yNum;
     // 如果是body，则按照屏幕宽度计算
-    if (this.containerId === "body") {
+    if (this.containerId === 'body') {
       canvas.width = window.screen.width / this.xNum;
       canvas.height = window.screen.height / this.yNum;
     }
@@ -180,7 +180,7 @@ class Watermark {
         this.measureWidth(this.content) * this.fontCanvasRatio;
     }
     this.fillCanvas(canvas);
-    const mask = document.createElement("div");
+    const mask = document.createElement('div');
     mask.id = this.markId;
     this.generateMask(mask, canvas);
     this.observeChanges(container, mask, canvas);
@@ -201,11 +201,11 @@ class Watermark {
    * @param {HTMLCanvasElement} canvas - 画布元素
    */
   fillCanvas = (canvas: HTMLCanvasElement) => {
-    const ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
     ctx.fillStyle = `color: ${this.color}`;
     ctx.font = `${this.fontSize} ${this.fontFamily}`;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
     const width = canvas.width / 2;
     const height = canvas.height / 2;
     // 将起点设置为中心点
@@ -221,18 +221,18 @@ class Watermark {
    * @param {HTMLCanvasElement} canvas - 画布元素
    */
   generateMask = (mask: HTMLElement, canvas: HTMLCanvasElement) => {
-    mask.style.pointerEvents = "none";
+    mask.style.pointerEvents = 'none';
     mask.style.top =
       mask.style.left =
       mask.style.bottom =
       mask.style.right =
-        "0";
+        '0';
     mask.style.opacity = this.opacity;
-    mask.style.display = "block";
-    mask.style.visibility = "visible";
-    mask.style.position = this.containerId === "body" ? "fixed" : "absolute";
+    mask.style.display = 'block';
+    mask.style.visibility = 'visible';
+    mask.style.position = this.containerId === 'body' ? 'fixed' : 'absolute';
     mask.style.zIndex = this.zIndex;
-    mask.style.background = `url(${canvas.toDataURL("image/png")}) ${
+    mask.style.background = `url(${canvas.toDataURL('image/png')}) ${
       this.position
     } repeat`;
   };
@@ -246,7 +246,7 @@ class Watermark {
   observeChanges = (
     container: HTMLElement,
     mask: HTMLElement,
-    canvas: HTMLCanvasElement
+    canvas: HTMLCanvasElement,
   ) => {
     // 如果属性发生变化，则重新设置水印样式
     this.elementOb = new MutationObserver(() => {
@@ -256,7 +256,7 @@ class Watermark {
     this.containerOb = new MutationObserver((mutationsList) => {
       mutationsList.map((mutaion) => {
         mutaion.removedNodes.forEach((targetNode) => {
-          if ("id" in targetNode && targetNode.id === mask.id) {
+          if ('id' in targetNode && targetNode.id === mask.id) {
             this.callback(container, mask);
           }
         });

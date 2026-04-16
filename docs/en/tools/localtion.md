@@ -21,14 +21,14 @@ Returns an object of type `Promise<{ latitude: number; longitude: number }>`, wh
 ## Example
 
 ```js
-import { getLocaltion } from "cat-tool";
+import { getLocaltion } from 'cat-tool';
 
 getLocaltion()
   .then(({ latitude, longitude }) => {
-    console.log("Location:", latitude, longitude);
+    console.log('Location:', latitude, longitude);
   })
   .catch((error) => {
-    console.error("Error getting location:", error);
+    console.error('Error getting location:', error);
   });
 ```
 

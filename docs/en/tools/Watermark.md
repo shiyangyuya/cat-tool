@@ -43,19 +43,19 @@ interface WatermarkOption {
 > General use
 
 ```typescript
-import { Watermark } from "cat-tool";
+import { Watermark } from 'cat-tool';
 
-new Watermark({ content: "hello world!" });
+new Watermark({ content: 'hello world!' });
 ```
 
 > Multi-line watermarking: This can be done by creating multiple instances and by using the xGap | The yGap' parameter controls the spacing between watermarks.
 > Note that if you want to implement a multi-line layout, it is recommended to set 'auto' to false yNum' parameter to set the number of watermarks.
 
 ```typescript
-import { Watermark } from "cat-tool";
+import { Watermark } from 'cat-tool';
 
-new Watermark({ content: "line first" });
-new Watermark({ content: "line second", yGap: 20 });
+new Watermark({ content: 'line first' });
+new Watermark({ content: 'line second', yGap: 20 });
 ```
 
 ## remove
@@ -63,9 +63,9 @@ new Watermark({ content: "line second", yGap: 20 });
 > remove watermark can use `remove()` method
 
 ```typescript
-import { Watermark } from "cat-tool";
+import { Watermark } from 'cat-tool';
 
-const appMark = new Watermark({ content: "hello world!", containerId: "#app" });
+const appMark = new Watermark({ content: 'hello world!', containerId: '#app' });
 
 appMark.remove();
 ```

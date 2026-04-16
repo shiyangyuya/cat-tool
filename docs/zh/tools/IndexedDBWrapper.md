@@ -15,8 +15,8 @@ storeName：数据库中的存储对象名称。
 version（可选）：数据库的版本号。
 
 ```js
-import { IndexedDBWrapper } from "cat-tool";
-const db = new IndexedDBWrapper("MyDatabase", "MyObjectStore");
+import { IndexedDBWrapper } from 'cat-tool';
+const db = new IndexedDBWrapper('MyDatabase', 'MyObjectStore');
 ```
 
 ## 方法
@@ -45,29 +45,29 @@ const db = new IndexedDBWrapper("MyDatabase", "MyObjectStore");
 
 ```js
 async () => {
-  const db = new IndexedDBWrapper("MyDatabase", "MyObjectStore");
+  const db = new IndexedDBWrapper('MyDatabase', 'MyObjectStore');
   try {
     await db.open();
-    console.log("数据库打开成功");
+    console.log('数据库打开成功');
 
     // 添加数据
-    const id = await db.add({ name: "John Doe", age: 30 });
-    console.log("数据添加成功，ID:", id);
+    const id = await db.add({ name: 'John Doe', age: 30 });
+    console.log('数据添加成功，ID:', id);
 
     // 查询数据
     const data = await db.get(id);
-    console.log("查询到的数据:", data);
+    console.log('查询到的数据:', data);
 
     // 修改数据
     data.age = 31;
     await db.update(data);
-    console.log("数据更新成功");
+    console.log('数据更新成功');
 
     // 删除数据
     await db.delete(id);
-    console.log("数据删除成功");
+    console.log('数据删除成功');
   } catch (error) {
-    console.error("操作失败", error);
+    console.error('操作失败', error);
   }
 };
 ```
@@ -76,13 +76,13 @@ async () => {
 
 ```ts
 // store.js
-import { IndexedDBWrapper } from "cat-tool";
+import { IndexedDBWrapper } from 'cat-tool';
 type Data = {
   id: number | string;
   value: any;
 };
 // 创建数据库
-const store = new IndexedDBWrapper("dbName", "StoreName", 1);
+const store = new IndexedDBWrapper('dbName', 'StoreName', 1);
 
 // 创建或更新数据
 const setData = async (data: Data) => {
@@ -106,8 +106,8 @@ export default { setData, getData, value: store };
 ```
 
 ```js
-import store from "./store";
-store.getData("id");
+import store from './store';
+store.getData('id');
 store.setData({ id, value });
 ```
 

@@ -14,7 +14,7 @@
  */
 
 interface ResultItem {
-  type: "resolve" | "reject";
+  type: 'resolve' | 'reject';
   value: unknown;
   queueIndex: number;
 }
@@ -39,14 +39,14 @@ export class PromiseQueue {
         try {
           const result = await task();
           this.result.push({
-            type: "resolve",
+            type: 'resolve',
             value: result,
             queueIndex,
           });
           resolve(result);
         } catch (error) {
           this.result.push({
-            type: "reject",
+            type: 'reject',
             value: error,
             queueIndex,
           });

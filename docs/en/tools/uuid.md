@@ -10,15 +10,17 @@ This module provides two ways to generate a Unique Identifier (UUID):
 ## Example
 
 ```javascript
-import { uuid } from "cat-tool";
+import { uuid } from 'cat-tool';
 
 uuid.buildID();
 uuid.buildShortID();
 ```
+
 ## Online experience
 
 <span @click="build('buildShortID')" class="btn">buildShortID</span>
 <span @click="build('buildID')" class="btn">buildID</span>
+
 <div>{{ uid }}</div>
 
 <script setup>

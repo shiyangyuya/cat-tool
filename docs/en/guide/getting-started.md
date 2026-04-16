@@ -25,7 +25,7 @@ $ yarn add cat-tool
 ## Usage {#usage}
 
 ```js
-import { Watermark } from "cat-tool";
+import { Watermark } from 'cat-tool';
 
-new Watermark({ content: "hello world!" });
+new Watermark({ content: 'hello world!' });
 ```

@@ -19,7 +19,7 @@ class IndexedDBWrapper {
         this.db = (event.target as IDBOpenDBRequest).result;
         if (!this.db.objectStoreNames.contains(this.storeName)) {
           this.db.createObjectStore(this.storeName, {
-            keyPath: "id",
+            keyPath: 'id',
             autoIncrement: true,
           });
           Promise.resolve().then(() => resolve(null));
@@ -52,8 +52,8 @@ class IndexedDBWrapper {
     return new Promise((resolve, reject) => {
       this.autoOpen()
         .then((db) => {
-          if (!db) return reject("Database is not open");
-          const transaction = db.transaction([this.storeName], "readwrite");
+          if (!db) return reject('Database is not open');
+          const transaction = db.transaction([this.storeName], 'readwrite');
           const store = transaction.objectStore(this.storeName);
           const request = store.add(data);
           request.onsuccess = (event: Event) => {
@@ -64,7 +64,7 @@ class IndexedDBWrapper {
           };
         })
         .catch(() => {
-          return reject("Database is not open");
+          return reject('Database is not open');
         });
     });
   }
@@ -72,11 +72,11 @@ class IndexedDBWrapper {
   get(key: IDBValidKey): Promise<unknown> {
     return new Promise((resolve, reject) => {
       if (!this.db) {
-        return reject("Database is not open");
+        return reject('Database is not open');
       }
       this.autoOpen().then((db) => {
-        if (!db) return reject("Database is not open");
-        const transaction = db.transaction([this.storeName], "readonly");
+        if (!db) return reject('Database is not open');
+        const transaction = db.transaction([this.storeName], 'readonly');
         const store = transaction.objectStore(this.storeName);
         const request = store.get(key);
         request.onsuccess = (event: Event) => {
@@ -93,8 +93,8 @@ class IndexedDBWrapper {
     return new Promise((resolve, reject) => {
       this.autoOpen()
         .then((db) => {
-          if (!db) return reject("Database is not open");
-          const transaction = db.transaction([this.storeName], "readwrite");
+          if (!db) return reject('Database is not open');
+          const transaction = db.transaction([this.storeName], 'readwrite');
           const store = transaction.objectStore(this.storeName);
           const request = store.put(data);
           request.onsuccess = (event: Event) => {
@@ -105,7 +105,7 @@ class IndexedDBWrapper {
           };
         })
         .catch(() => {
-          return reject("Database is not open");
+          return reject('Database is not open');
         });
     });
   }
@@ -113,8 +113,8 @@ class IndexedDBWrapper {
   delete(key: IDBValidKey): Promise<void> {
     return new Promise((resolve, reject) => {
       this.autoOpen().then((db) => {
-        if (!db) return reject("Database is not open");
-        const transaction = db.transaction([this.storeName], "readwrite");
+        if (!db) return reject('Database is not open');
+        const transaction = db.transaction([this.storeName], 'readwrite');
         const store = transaction.objectStore(this.storeName);
         const request = store.delete(key);
         request.onsuccess = () => {
@@ -129,8 +129,8 @@ class IndexedDBWrapper {
   getAll() {
     return new Promise((resolve, reject) => {
       this.autoOpen().then((db) => {
-        if (!db) return reject("Database is not open");
-        const transaction = db.transaction([this.storeName], "readonly");
+        if (!db) return reject('Database is not open');
+        const transaction = db.transaction([this.storeName], 'readonly');
         const store = transaction.objectStore(this.storeName);
         const request = store.getAll();
         request.onsuccess = (event: Event) => {

@@ -2,8 +2,8 @@
 layout: home
 
 hero:
-  name: "cat-tool"
-  text: "一个模块化、简单易用的 JavaScript 实用工具库"
+  name: 'cat-tool'
+  text: '一个模块化、简单易用的 JavaScript 实用工具库'
   actions:
     - theme: brand
       text: 快速开始
@@ -22,4 +22,3 @@ features:
   - title: 不依赖框架
     details: 不管是Vue、React、jquery...都可以使用
 ---
-

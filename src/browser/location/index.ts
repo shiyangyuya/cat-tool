@@ -4,7 +4,7 @@
  * @returns Promise<{ latitude: number; longitude: number }>
  */
 const getLocaltion = (
-  timeout?: number
+  timeout?: number,
 ): Promise<{ latitude: number; longitude: number }> => {
   return new Promise((resolve, reject) => {
     const config =
@@ -18,7 +18,7 @@ const getLocaltion = (
           longitude: position.coords.longitude,
         }),
       (error) => reject(error),
-      config
+      config,
     );
   });
 };

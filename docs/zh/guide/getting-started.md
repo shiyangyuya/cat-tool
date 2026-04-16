@@ -25,11 +25,11 @@ $ yarn add cat-tool
 ## 使用示例 {#usage}
 
 ```js
-import { Watermark } from "cat-tool";
+import { Watermark } from 'cat-tool';
 
-new Watermark({ content: "hello world!" });
+new Watermark({ content: 'hello world!' });
 ```
 
 ## 开始使用
 
- 对于每个工具的用法，请查阅[对应的独立文档](/zh/tools/bus)
+对于每个工具的用法，请查阅[对应的独立文档](/zh/tools/bus)

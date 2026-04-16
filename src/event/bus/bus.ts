@@ -45,7 +45,7 @@ class Bus {
       return;
     }
     this._list[name] = this._list[name].filter(
-      (d) => Object.keys(d)[0] !== fnKey
+      (d) => Object.keys(d)[0] !== fnKey,
     );
   }
   /**

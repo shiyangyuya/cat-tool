@@ -10,15 +10,17 @@
 ## 示例
 
 ```javascript
-import { uuid } from "cat-tool";
+import { uuid } from 'cat-tool';
 
 uuid.buildID();
 uuid.buildShortID();
 ```
+
 ## 在线体验
 
 <span @click="build('buildShortID')" class="btn">buildShortID</span>
 <span @click="build('buildID')" class="btn">buildID</span>
+
 <div>{{ uid }}</div>
 
 <script setup>

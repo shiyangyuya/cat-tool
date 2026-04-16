@@ -14,13 +14,13 @@
 ```typescript
 const queue = new PromiseQueue(2);
 const task1 = () =>
-  new Promise((resolve) => setTimeout(() => resolve("Task 1"), 1000));
+  new Promise((resolve) => setTimeout(() => resolve('Task 1'), 1000));
 const task2 = () =>
-  new Promise((resolve) => setTimeout(() => resolve("Task 2"), 2000));
+  new Promise((resolve) => setTimeout(() => resolve('Task 2'), 2000));
 const task3 = () =>
-  new Promise((resolve) => setTimeout(() => resolve("Task 3"), 3000));
+  new Promise((resolve) => setTimeout(() => resolve('Task 3'), 3000));
 const task4 = () =>
-  new Promise((resolve) => setTimeout(() => resolve("Task 4"), 4000));
+  new Promise((resolve) => setTimeout(() => resolve('Task 4'), 4000));
 queue.enqueue(task1).then(console.log); // Task 1
 queue.enqueue(task2).then(console.log); // Task 2
 queue.enqueue(task3).then(console.log); // Task 3

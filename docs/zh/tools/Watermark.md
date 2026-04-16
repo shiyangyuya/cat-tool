@@ -43,9 +43,9 @@ interface WatermarkOption {
 ## 普通使用
 
 ```typescript
-import { Watermark } from "cat-tool";
+import { Watermark } from 'cat-tool';
 
-new Watermark({ content: "hello world!" });
+new Watermark({ content: 'hello world!' });
 ```
 
 ## 多行水印
@@ -54,10 +54,10 @@ new Watermark({ content: "hello world!" });
 > 需要注意的是想要实现多行布局建议设置`auto`为 false.通过`xNum | yNum`参数设置水印个数.
 
 ```typescript
-import { Watermark } from "cat-tool";
+import { Watermark } from 'cat-tool';
 
-new Watermark({ content: "line first", auto: false });
-new Watermark({ content: "line second", yGap: 20, auto: false });
+new Watermark({ content: 'line first', auto: false });
+new Watermark({ content: 'line second', yGap: 20, auto: false });
 ```
 
 ## 指定挂载的节点
@@ -71,9 +71,9 @@ new Watermark({ content: "line second", yGap: 20, auto: false });
 > 移除水印可以使用实例的 `remove()` 方法
 
 ```typescript
-import { Watermark } from "cat-tool";
+import { Watermark } from 'cat-tool';
 
-const appMark = new Watermark({ content: "hello world!", containerId: "#app" });
+const appMark = new Watermark({ content: 'hello world!', containerId: '#app' });
 
 appMark.remove();
 ```

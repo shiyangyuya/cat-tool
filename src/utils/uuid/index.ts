@@ -18,10 +18,10 @@ for (let i = 0; i <= 15; i++) {
  * 生成一个唯一的标识符（UUID）
  */
 const buildID = () => {
-  let uuid = "";
+  let uuid = '';
   for (let i = 1; i <= 36; i++) {
     if (i === 9 || i === 14 || i === 19 || i === 24) {
-      uuid += "-";
+      uuid += '-';
     } else if (i === 15) {
       uuid += 4;
     } else if (i === 20) {
@@ -30,7 +30,7 @@ const buildID = () => {
       uuid += hexList[(Math.random() * 16) | 0];
     }
   }
-  return uuid.replace(/-/g, "");
+  return uuid.replace(/-/g, '');
 };
 
 export const uuid = { buildShortID, buildID };

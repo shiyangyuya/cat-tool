@@ -2,8 +2,8 @@
 layout: home
 
 hero:
-  name: "cat-tool"
-  text: "A modular, easy-to-use JavaScript utility library"
+  name: 'cat-tool'
+  text: 'A modular, easy-to-use JavaScript utility library'
   actions:
     - theme: brand
       text: Get started quickly

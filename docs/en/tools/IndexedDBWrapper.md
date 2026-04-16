@@ -15,8 +15,8 @@ storeName: The name of the storage object in the database.
 version (optional): The version number of the database.
 
 ```js
-import { IndexedDBWrapper } from "cat-tool";
-const db = new IndexedDBWrapper("MyDatabase", "MyObjectStore");
+import { IndexedDBWrapper } from 'cat-tool';
+const db = new IndexedDBWrapper('MyDatabase', 'MyObjectStore');
 ```
 
 ## Methods
@@ -45,25 +45,25 @@ Return value: a Promise object, which resolves to empty if successful, and rejec
 
 ```js
 async () => {
-  const db = new IndexedDBWrapper("MyDatabase", "MyObjectStore");
+  const db = new IndexedDBWrapper('MyDatabase', 'MyObjectStore');
   try {
     await db.open();
-    console.log("Database opened successfully");
+    console.log('Database opened successfully');
     // Add data
-    const id = await db.add({ name: "John Doe", age: 30 });
-    console.log("Data added successfully, ID:", id);
+    const id = await db.add({ name: 'John Doe', age: 30 });
+    console.log('Data added successfully, ID:', id);
     // Query data
     const data = await db.get(id);
-    console.log("Query data:", data);
+    console.log('Query data:', data);
     // Modify data
     data.age = 31;
     await db.update(data);
-    console.log("Data updated successfully");
+    console.log('Data updated successfully');
     // Delete data
     await db.delete(id);
-    console.log("Data deleted successfully");
+    console.log('Data deleted successfully');
   } catch (error) {
-    console.error("Operation failed", error);
+    console.error('Operation failed', error);
   }
 };
 ```
@@ -72,12 +72,12 @@ async () => {
 
 ```ts
 // store.js
-import { IndexedDBWrapper } from "cat-tool";
+import { IndexedDBWrapper } from 'cat-tool';
 type Data = {
   id: number | string;
   value: any;
 };
-const store = new IndexedDBWrapper("dbName", "StoreName", 1);
+const store = new IndexedDBWrapper('dbName', 'StoreName', 1);
 
 const setData = async (data: Data) => {
   const oldData = await store.get(data.id);
@@ -98,8 +98,8 @@ export default { setData, getData, value: store };
 ```
 
 ```js
-import store from "./store";
-store.getData("id");
+import store from './store';
+store.getData('id');
 store.setData({ id, value });
 ```
 
