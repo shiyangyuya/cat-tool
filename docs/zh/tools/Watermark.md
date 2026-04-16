@@ -108,7 +108,7 @@ let fillMuti = null
 let remove = null
 let domArr = []
 onMounted(() => {
-  import('../../../es/index.js').then((module) => {
+  import('cat-tool').then((module) => {
     let {Watermark} = module
     fill = ()=> {
       const item = new Watermark({ content: "hello world!" });

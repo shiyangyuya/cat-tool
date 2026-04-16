@@ -11,10 +11,10 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /en/guide/getting-started
+      link: /guide/getting-started
     - theme: alt
       text: Browse Docs
-      link: /en/tools/bus
+      link: /tools/bus
 
 features:
   - icon: 📦

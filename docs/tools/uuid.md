@@ -28,7 +28,7 @@ import { onMounted,ref } from 'vue'
 let build = null
 let uid = ref('')
 onMounted(() => {
-  import('../../../es/index.js').then((module) => {
+  import('cat-tool').then((module) => {
     let {uuid} = module
     build = (key)=> {
       uid.value = uuid[key]()

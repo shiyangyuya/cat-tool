@@ -43,7 +43,7 @@ import { onMounted, ref } from 'vue'
 let get = null
 let info = ref('')
 onMounted(() => {
-  import('../../../es/index.js').then((module) => {
+  import('cat-tool').then((module) => {
     let {getLocaltion} = module
     get = ()=> {
       getLocaltion().then(({latitude, longitude})=> {
