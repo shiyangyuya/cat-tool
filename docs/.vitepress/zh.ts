@@ -75,26 +75,33 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 
 function sidebarTool(): DefaultTheme.SidebarItem[] {
   return [
-    // {
-    //   text: "工具总览",
-    //   collapsed: false,
-    //   items: [{ text: "工具总览 ", link: "overview" }],
-    // },
     {
-      text: '类工具',
+      text: 'Browser (浏览器工具)',
       collapsed: false,
       items: [
-        { text: 'Bus 事件总线', link: 'bus' },
-        { text: 'IndexedDB 数据库', link: 'IndexedDBWrapper' },
         { text: 'Watermark 页面水印', link: 'Watermark' },
-        { text: 'PromiseQueue 异步队列控制', link: 'PromiseQueue' },
+        { text: 'getLocaltion 获取定位', link: 'localtion' },
       ],
     },
     {
-      text: '函数工具',
+      text: 'Storage (存储工具)',
+      collapsed: false,
+      items: [{ text: 'IndexedDB 数据库', link: 'IndexedDBWrapper' }],
+    },
+    {
+      text: 'Event (事件驱动)',
+      collapsed: false,
+      items: [{ text: 'Bus 事件总线', link: 'bus' }],
+    },
+    {
+      text: 'Async (异步队列)',
+      collapsed: false,
+      items: [{ text: 'PromiseQueue 并发控制', link: 'PromiseQueue' }],
+    },
+    {
+      text: 'Utils (基础通用方法)',
       collapsed: false,
       items: [
-        { text: 'getLocaltion 获取定位', link: 'localtion' },
         { text: 'uuid 唯一标识符', link: 'uuid' },
         { text: 'memoize 缓存函数', link: 'memoize' },
       ],

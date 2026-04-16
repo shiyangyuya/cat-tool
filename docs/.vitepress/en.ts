@@ -6,8 +6,8 @@ export const en = defineConfig({
   themeConfig: {
     nav: nav(),
     sidebar: {
-      '/en/guide/': { base: '/en/guide/', items: sidebarGuide() },
-      '/en/tools/': { base: '/en/tools/', items: sidebarTool() },
+      '/guide/': { base: '/guide/', items: sidebarGuide() },
+      '/tools/': { base: '/tools/', items: sidebarTool() },
     },
     editLink: {
       pattern: 'https://github.com/shiyangyuya/cat-tool/tree/main/docs',
@@ -44,13 +44,13 @@ function nav(): DefaultTheme.NavItem[] {
   return [
     {
       text: 'guide',
-      link: '/en/guide/what-is',
-      activeMatch: '/en/guide/',
+      link: '/guide/what-is',
+      activeMatch: '/guide/',
     },
     {
       text: 'reference',
-      link: '/en/tools/bus',
-      activeMatch: '/en/tools/',
+      link: '/tools/bus',
+      activeMatch: '/tools/',
     },
   ];
 }
@@ -75,27 +75,35 @@ function sidebarGuide(): DefaultTheme.SidebarItem[] {
 
 function sidebarTool(): DefaultTheme.SidebarItem[] {
   return [
-    // {
-    //   text: "overview",
-    //   collapsed: false,
-    //   items: [{ text: "overview ", link: "overview" }],
-    // },
     {
-      text: 'class tools',
+      text: 'Browser',
       collapsed: false,
       items: [
-        { text: 'Event Bus', link: 'bus' },
-        { text: 'IndexedDB database', link: 'IndexedDBWrapper' },
-        { text: 'Watermark Page Watermark', link: 'Watermark' },
+        { text: 'Watermark', link: 'Watermark' },
+        { text: 'getLocation', link: 'localtion' },
       ],
     },
     {
-      text: 'function tools',
+      text: 'Storage',
+      collapsed: false,
+      items: [{ text: 'IndexedDB', link: 'IndexedDBWrapper' }],
+    },
+    {
+      text: 'Event',
+      collapsed: false,
+      items: [{ text: 'Event Bus', link: 'bus' }],
+    },
+    {
+      text: 'Async',
+      collapsed: false,
+      items: [{ text: 'PromiseQueue', link: 'PromiseQueue' }],
+    },
+    {
+      text: 'Utils',
       collapsed: false,
       items: [
-        { text: 'getLocaltion', link: 'localtion' },
         { text: 'uuid', link: 'uuid' },
-        { text: 'memoize Caching Function', link: 'memoize' },
+        { text: 'memoize', link: 'memoize' },
       ],
     },
   ];
