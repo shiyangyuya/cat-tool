@@ -13,7 +13,7 @@ declare const _default: {
         buildShortID: () => string;
         buildID: () => string;
     };
-    getLocaltion: (timeout?: number | undefined) => Promise<{
+    getLocaltion: (timeout?: number) => Promise<{
         latitude: number;
         longitude: number;
     }>;

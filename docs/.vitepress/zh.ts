@@ -87,6 +87,7 @@ function sidebarTool(): DefaultTheme.SidebarItem[] {
         { text: "Bus 事件总线", link: "bus" },
         { text: "IndexedDB 数据库", link: "IndexedDBWrapper" },
         { text: "Watermark 页面水印", link: "Watermark" },
+        { text: "PromiseQueue 异步队列控制", link: "PromiseQueue" },
       ],
     },
     {
